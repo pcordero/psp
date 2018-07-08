@@ -30,6 +30,7 @@ gem 'jquery-rails'
 
 # TODO: Working tests will return!
 group :test, :development do
+  gem 'byebug'
   #gem 'rspec-rails', '2.8.1'
   #gem 'capybara', '1.1.2'
   #gem 'guard-rspec'

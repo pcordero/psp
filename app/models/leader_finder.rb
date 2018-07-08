@@ -59,6 +59,7 @@ class LeaderFinder
     end
 
     def self.cached_get(endpoint)
+      debugger
       Rails.cache.fetch(endpoint) do
         get(endpoint).parsed_response
       end

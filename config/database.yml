@@ -1,10 +1,14 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: db
+  #host: db
+  host: localhost
   port: 5432
   username: postgres
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  #password: <%= ENV['POSTGRES_PASSWORD'] %>
+  #<<: *default
+  #database: new-leaders-api2_development
+  
 
 development:
   <<: *default
