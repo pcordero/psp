@@ -41,8 +41,12 @@ require "capistrano/bundler"
 require "capistrano/rails/migrations"
 # require "capistrano/passenger"
 
-require 'capistrano/puma'
-install_plugin Capistrano::Puma  # Default puma tasks
+require 'capistrano/unicorn'
+install_plugin Capistrano::Unicorn  # Default puma tasks
+
+
+#require 'capistrano/puma'
+#install_plugin Capistrano::Puma  # Default puma tasks
 
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
