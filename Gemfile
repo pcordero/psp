@@ -70,7 +70,7 @@ group :development do
 end
 
 # Legacy Content Managment to be removed
-gem 'refinerycms'
-gem 'refinerycms-blog'
-gem 'refinerycms-justices', :path => 'vendor/extensions'
-gem 'refinerycms-executives', :path => 'vendor/extensions'
+# gem 'refinerycms'
+# gem 'refinerycms-blog'
+# gem 'refinerycms-justices', :path => 'vendor/extensions'
+# gem 'refinerycms-executives', :path => 'vendor/extensions'

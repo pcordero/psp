@@ -4,7 +4,7 @@ class LeaderFinder
   include HTTParty
   #base_uri 'api.publicservantsprayer.org'
   #base_uri 'api:8080'
-  base_uri '18.191.194.172:80'
+  base_uri '18.217.8.198:80'
 
   def self.find(slug)
     result = get("/v1/leaders/#{slug}")
