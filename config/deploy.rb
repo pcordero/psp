@@ -1,7 +1,7 @@
 require "bundler/capistrano"
 
 #server "208.82.102.152", :web, :app, :db, primary: true
-server "18.191.175.149", :web, :app, primary: true
+#server "18.191.175.149", :web, :app, primary: true
 
 set :application, "psp"
 set :user, "ubuntu"

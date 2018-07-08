@@ -45,7 +45,6 @@ end
 
 # group :development do
 #   gem 'capistrano'
-#   gem 'capistrano-rbenv'
 #   gem 'capistrano-rails'
 #   gem 'capistrano-bundler'
 #   gem 'capistrano-systemd-multiservice'
@@ -58,10 +57,17 @@ end
 
 
 # Use unicorn as the app server
-gem 'unicorn'
+#gem 'unicorn'
+gem 'puma', '~> 3.7'
 
 # Deploy with Capistrano
-gem 'capistrano'
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano3-puma', github: "seuros/capistrano-puma"
+end
 
 # Legacy Content Managment to be removed
 gem 'refinerycms'
