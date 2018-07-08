@@ -57,8 +57,8 @@ end
 
 
 # Use unicorn as the app server
-#gem 'unicorn'
-gem 'puma', '~> 3.7'
+gem 'unicorn'
+#gem 'puma', '~> 3.7'
 
 # Deploy with Capistrano
 group :development do
@@ -66,7 +66,8 @@ group :development do
   gem 'capistrano-rbenv'
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
-  gem 'capistrano3-puma', github: "seuros/capistrano-puma"
+  gem 'capistrano-unicorn'
+  #gem 'capistrano3-puma', github: "seuros/capistrano-puma"
 end
 
 # Legacy Content Managment to be removed
