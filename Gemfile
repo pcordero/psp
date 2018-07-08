@@ -66,7 +66,7 @@ group :development do
   gem 'capistrano-rbenv'
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
-  gem 'capistrano-unicorn'
+  gem 'capistrano3-unicorn'
   #gem 'capistrano3-puma', github: "seuros/capistrano-puma"
 end
 

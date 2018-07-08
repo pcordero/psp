@@ -41,8 +41,7 @@ require "capistrano/bundler"
 require "capistrano/rails/migrations"
 # require "capistrano/passenger"
 
-require 'capistrano/unicorn'
-install_plugin Capistrano::Unicorn  # Default puma tasks
+require 'capistrano3/unicorn'
 
 
 #require 'capistrano/puma'
