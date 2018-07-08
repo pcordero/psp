@@ -3,7 +3,8 @@ require 'httparty'
 class LeaderFinder
   include HTTParty
   #base_uri 'api.publicservantsprayer.org'
-  base_uri 'api:8080'
+  #base_uri 'api:8080'
+  base_uri '18.191.194.172:80'
 
   def self.find(slug)
     result = get("/v1/leaders/#{slug}")
@@ -59,7 +60,7 @@ class LeaderFinder
     end
 
     def self.cached_get(endpoint)
-      debugger
+      #debugger
       Rails.cache.fetch(endpoint) do
         get(endpoint).parsed_response
       end

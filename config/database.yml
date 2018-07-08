@@ -21,3 +21,8 @@ test:
 production:
   <<: *default
   database: psp_production
+  username: root
+  password: dfkjer5fdwaf!
+  pool: 5
+  host: new-leaders.czps0byobfz2.us-east-2.rds.amazonaws.com
+  port: 5432

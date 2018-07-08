@@ -1,15 +1,17 @@
 require "bundler/capistrano"
 
-server "208.82.102.152", :web, :app, :db, primary: true
+#server "208.82.102.152", :web, :app, :db, primary: true
+server "18.191.175.149", :web, :app, primary: true
 
 set :application, "psp"
-set :user, "deployer"
-set :deploy_to, "/home/#{user}/apps/#{application}"
+set :user, "ubuntu"
+set :deploy_to, "/home/#{user}/#{application}"
 set :deploy_via, :remote_cache
 set :use_sudo, false
 
 set :scm, 'git'
-set :repository,  "git@github.com:publicservantsprayer/psp.git"
+#set :repository,  "git@github.com:publicservantsprayer/psp.git"
+set :repository, "git@github.com:fuzzygroup/psp.git"
 set :branch, 'master'
 
 default_run_options[:pty] = true

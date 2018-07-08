@@ -43,6 +43,20 @@ group :test, :development do
   #gem 'spring-commands-rspec'
 end
 
+# group :development do
+#   gem 'capistrano'
+#   gem 'capistrano-rbenv'
+#   gem 'capistrano-rails'
+#   gem 'capistrano-bundler'
+#   gem 'capistrano-systemd-multiservice'
+#   gem 'aws-sdk'
+#   gem 'capistrano-measure'
+#   gem 'capistrano-asg'
+#   #gem 'capistrano-puma'
+#   gem 'capistrano3-puma', github: "seuros/capistrano-puma"
+# end
+
+
 # Use unicorn as the app server
 gem 'unicorn'
 
