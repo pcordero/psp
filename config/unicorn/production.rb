@@ -8,3 +8,5 @@ stdout_path "#{root}/log/unicorn.log"
 listen "/tmp/unicorn.blog.sock"
 worker_processes 5
 timeout 30
+
+listen 8080, :tcp_nopush => true
