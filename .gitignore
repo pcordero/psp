@@ -7,7 +7,7 @@
 
 /geoip
 /know_who
-/public/photos
+#/public/photos
 /public/assets
 
 /config/initializers/mail_chimp.rb
