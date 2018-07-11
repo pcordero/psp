@@ -35,8 +35,17 @@ class Leader < Hashie::Mash
     self['email'] || ""
   end
 
+  # photo_file="Steube_WGreg_289471.jpg" photo_path="Images\\Photos\\SL\\FL\\H"
   def photo_src
-    self['photo_src'] || "placeholder.jpg"
+    return self['photo_src'] || "http://placehold.it/109x148"
+    return self['photo_src'] || "placeholder.png"
+    photo_src = "#{self['photo_path'].sub(/Images\/\//,'public/')}#{self['photo_file']}"
+    #self['photo_src'] || "placeholder.jpg"
+    if self['photo_file']
+      return photo_src
+    else
+      return "placeholder.jpg"
+    end
   end
 
   def twitter_or_name
