@@ -38,7 +38,7 @@ class Leader < Hashie::Mash
 
   # photo_file="Steube_WGreg_289471.jpg" photo_path="Images\\Photos\\SL\\FL\\H"
   def photo_src
-    return "http://placehold.it/109x148" if self['photo_file'].nil?
+    return "http://placehold.it/109x148" #if self['photo_file'].nil?
     return "http://placehold.it/109x148" if self['photo_path'].nil? 
     
     # works: http://18.191.175.149/photos/SL/AK/H/Birch_Chris_583178.jpg
