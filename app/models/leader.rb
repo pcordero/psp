@@ -46,7 +46,7 @@ class Leader < Hashie::Mash
     # @leader.photo_path
     # => "Images\\Photos\\FL\\H"
     
-    photo_path = self.photo_src.sub(/Images/,'').sub(/Photos/,'photos').gsub(/\\\\/,'/')
+    photo_path = self.photo_path.sub(/Images/,'').sub(/Photos/,'photos').gsub(/\\\\/,'/')
     
     #return self['photo_src'] || "http://placehold.it/109x148"
     #return self['photo_src'] || "placeholder.png"
