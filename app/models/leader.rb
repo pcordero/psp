@@ -38,7 +38,7 @@ class Leader < Hashie::Mash
 
   # photo_file="Steube_WGreg_289471.jpg" photo_path="Images\\Photos\\SL\\FL\\H"
   def photo_src
-    return "http://placehold.it/109x148" #if self['photo_file'].nil?
+    return "http://placehold.it/109x148" if self['photo_file'].nil?
     return "http://placehold.it/109x148" if self['photo_path'].nil? 
     
     # works: http://18.191.175.149/photos/SL/AK/H/Birch_Chris_583178.jpg
@@ -46,7 +46,7 @@ class Leader < Hashie::Mash
     # @leader.photo_path
     # => "Images\\Photos\\FL\\H"
     
-    photo_path = self.photo_src.sub(/Images/,'').sub(/Photos/,'photos').sub(/\\\\/,'/')
+    photo_path = self.photo_src.sub(/Images/,'').sub(/Photos/,'photos').gsub(/\\\\/,'/')
     
     #return self['photo_src'] || "http://placehold.it/109x148"
     #return self['photo_src'] || "placeholder.png"
