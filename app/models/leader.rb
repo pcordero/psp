@@ -24,7 +24,8 @@ class Leader < Hashie::Mash
   end
 
   def name
-    self['name'] || ""
+    [first_name, mid_name, last_name].reject{|i|i.blank?}.join(" ") || ""
+    #self['name'] || ""
   end
 
   def title
