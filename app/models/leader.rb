@@ -38,6 +38,9 @@ class Leader < Hashie::Mash
 
   # photo_file="Steube_WGreg_289471.jpg" photo_path="Images\\Photos\\SL\\FL\\H"
   def photo_src
+    return "http://placehold.it/109x148" if self['photo_file'].nil?
+    return "http://placehold.it/109x148" if self['photo_path'].nil? 
+    
     #return self['photo_src'] || "http://placehold.it/109x148"
     #return self['photo_src'] || "placeholder.png"
     ps = "#{self['photo_path'].sub(/Images\/\//,'public/')}#{self['photo_file']}"
