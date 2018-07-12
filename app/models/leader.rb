@@ -43,8 +43,8 @@ class Leader < Hashie::Mash
     
     # works: http://18.191.175.149/photos/SL/AK/H/Birch_Chris_583178.jpg
     
-    @leader.photo_path
-    => "Images\\Photos\\FL\\H"
+    # @leader.photo_path
+    # => "Images\\Photos\\FL\\H"
     
     photo_path = self.photo_src.sub(/Images/,'').sub(/Photos/,'photos').sub(/\\\\/,'/')
     
