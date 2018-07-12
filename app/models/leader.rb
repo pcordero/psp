@@ -45,9 +45,9 @@ class Leader < Hashie::Mash
     
     # @leader.photo_path
     # => "Images\\Photos\\FL\\H"
-    Rails.logger("self.photo_path = #{self.photo_path}")
+    #Rails.logger("self.photo_path = #{self.photo_path}")
       
-    Rails.logger("p_path = #{p_path}")
+    #Rails.logger("p_path = #{p_path}")
     
     p_path = self.photo_path.sub(/Images/,'').sub(/Photos/,'photos').gsub(/\\/,'/')
     
