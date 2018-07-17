@@ -51,14 +51,30 @@ class Leader < Hashie::Mash
     
     p_path = self.photo_path.sub(/Images/,'').sub(/Photos/,'photos').gsub(/\\/,'/')
     
+    parts = self["photo_file"].split("_")
+    
+    arr = []
+    arr << parts[parts.size - 3]
+    arr << parts[parts.size - 2]
+    
+    file_by_number = File.join(Rails.root, "public", arr.join("_"))
+    
     #return self['photo_src'] || "http://placehold.it/109x148"
     #return self['photo_src'] || "placeholder.png"
     #ps = "#{self['photo_path'].sub(/Images\/\//,'public/')}#{self['photo_file']}"
     ps = "#{p_path}/#{photo_file}"
     #self['photo_src'] || "placeholder.jpg"
     if self['photo_file']
+      tmp = File.join(Rails.root, "public", self['photo_file'])
       # <img alt="Biggert_judy_158840" class="head-shot" src="/assets/\photos\FL\H/Biggert_Judy_158840.jpg">
-      return ps
+      if File.exists?(tmp)
+        return ps 
+      elsif File.exists?(file_by_number)
+        
+      else
+        return "http://placehold.it/109x148" 
+      end
+      
     else
       return "http://placehold.it/109x148" #"placeholder.jpg"
     end
