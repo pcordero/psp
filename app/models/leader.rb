@@ -41,6 +41,10 @@ class Leader < Hashie::Mash
     return "http://placehold.it/109x148" if self['photo_file'].nil?
     return "http://placehold.it/109x148" if self['photo_path'].nil? 
     
+    l = Logger.new(File.join(Rails.root, "log", "images.log"))
+    l.info("photo_file = #{self['photo_file']}")
+    l.info("photo_path = #{self['photo_path']}")
+    
     # works: http://18.191.175.149/photos/SL/AK/H/Birch_Chris_583178.jpg
     
     # @leader.photo_path
@@ -50,7 +54,7 @@ class Leader < Hashie::Mash
     #Rails.logger("p_path = #{p_path}")
     
     p_path = self.photo_path.sub(/Images/,'').sub(/Photos/,'photos').gsub(/\\/,'/')
-    
+    l.info("p_path = #{p_path}")
     parts = self["photo_file"].split("_")
     
     arr = []
@@ -58,6 +62,7 @@ class Leader < Hashie::Mash
     arr << parts[parts.size - 2]
     
     file_by_number = File.join(Rails.root, "public", arr.join("_"))
+    l.info("file_by_number = #{file_by_number}")
     
     #return self['photo_src'] || "http://placehold.it/109x148"
     #return self['photo_src'] || "placeholder.png"
@@ -67,7 +72,8 @@ class Leader < Hashie::Mash
     if self['photo_file']
       tmp = File.join(Rails.root, "public/Photos/", self['photo_file'])
       # <img alt="Biggert_judy_158840" class="head-shot" src="/assets/\photos\FL\H/Biggert_Judy_158840.jpg">
-      if 1 == 1 || File.exists?(tmp)
+      l.info("tmp = #{tmp}")
+      if File.exists?(tmp)
         return ps 
       elsif File.exists?(file_by_number)
         return file_by_number
