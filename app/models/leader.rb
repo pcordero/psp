@@ -65,7 +65,7 @@ class Leader < Hashie::Mash
     ps = "#{p_path}/#{photo_file}"
     #self['photo_src'] || "placeholder.jpg"
     if self['photo_file']
-      tmp = File.join(Rails.root, "public", self['photo_file'])
+      tmp = File.join(Rails.root, "public/Photos/", self['photo_file'])
       # <img alt="Biggert_judy_158840" class="head-shot" src="/assets/\photos\FL\H/Biggert_Judy_158840.jpg">
       if File.exists?(tmp)
         return ps 
