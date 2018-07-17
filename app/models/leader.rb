@@ -70,7 +70,7 @@ class Leader < Hashie::Mash
       if File.exists?(tmp)
         return ps 
       elsif File.exists?(file_by_number)
-        
+        return file_by_number
       else
         return "http://placehold.it/109x148" 
       end
