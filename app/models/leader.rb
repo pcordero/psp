@@ -89,6 +89,7 @@ class Leader < Hashie::Mash
       # <img alt="Biggert_judy_158840" class="head-shot" src="/assets/\photos\FL\H/Biggert_Judy_158840.jpg">
       l.info("tmp = #{tmp}")
       if File.exists?(tmp)
+        l.info("ps = #{ps}")
         return ps 
       elsif file_by_number && File.exists?(file_by_number)
         #file_by_number = file_by_number.sub(/)
