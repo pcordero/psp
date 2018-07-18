@@ -64,7 +64,9 @@ class Leader < Hashie::Mash
     if results && results.size == 1
       file_by_number = results.first
       parts = file_by_number.split("/")
-      actual_file_by_number = File.join("public", p_path, parts.last)
+      # goal: ps = /photos/SL/IN/H/Bartlett_John_261782.jpg
+      #actual_file_by_number = File.join("public", p_path, parts.last)
+      actual_file_by_number = File.join(p_path, parts.last)
     end
     
     
