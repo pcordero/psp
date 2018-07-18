@@ -56,12 +56,24 @@ class Leader < Hashie::Mash
     p_path = self.photo_path.sub(/Images/,'').sub(/Photos/,'photos').gsub(/\\/,'/')
     l.info("p_path = #{p_path}")
     parts = self["photo_file"].split("_")
+    results = Dir.glob(File.join(Rails.root, p_path, "*_#{parts.last}"))
+    
+    #results = Dir.glob(Rails.root, "public/photos") ("/Users/sjohnson/fuzzygroup/consulting/new_leaders_original/psp/public/photos/SL/IN/S/*194425.jpg")
+    if results && results.size == 1
+      file_by_number = results.first
+      
+    end
+    
+    
+    
+    l.info("parts = #{parts}")
     
     arr = []
     arr << parts[parts.size - 3]
     arr << parts[parts.size - 2]
+    arr << parts[parts.size - 1]
     
-    file_by_number = File.join(Rails.root, "public", arr.join("_"))
+    #file_by_number = File.join(Rails.root, "public", arr.join("_"))
     l.info("file_by_number = #{file_by_number}")
     
     #return self['photo_src'] || "http://placehold.it/109x148"
