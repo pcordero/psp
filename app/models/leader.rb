@@ -56,6 +56,8 @@ class Leader < Hashie::Mash
     p_path = self.photo_path.sub(/Images/,'').sub(/Photos/,'photos').gsub(/\\/,'/')
     l.info("p_path = #{p_path}")
     parts = self["photo_file"].split("_")
+    tmp1 = File.join(Rails.root, p_path, "*_#{parts.last}")
+    l.info("tmp1 = #{tmp1}")
     results = Dir.glob(File.join(Rails.root, p_path, "*_#{parts.last}"))
     
     #results = Dir.glob(Rails.root, "public/photos") ("/Users/sjohnson/fuzzygroup/consulting/new_leaders_original/psp/public/photos/SL/IN/S/*194425.jpg")
