@@ -8,6 +8,8 @@ class LeadersController < ApplicationController
   def show
     @leader = LeaderFinder.find(params[:id])
     @state = @leader.state
+    l = Logger.new(File.join(Rails.root, "log", "api.log"))
+    l.info(@leader)
   end
 
 end
