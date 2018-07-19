@@ -60,6 +60,9 @@ class Leader < Hashie::Mash
     l.info("tmp1 = #{tmp1}")
     results = Dir.glob(File.join(Rails.root, "public", p_path, "*#{parts.last}"))
     
+    if p_path =~ /SLE/
+      p_path = p_path.sub(/SLE/, 'SL')
+    end
     #results = Dir.glob(Rails.root, "public/photos") ("/Users/sjohnson/fuzzygroup/consulting/new_leaders_original/psp/public/photos/SL/IN/S/*194425.jpg")
     if results && results.size == 1
       file_by_number = results.first
