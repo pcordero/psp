@@ -46,8 +46,8 @@ class MailChimp
   private
 
     def mc(message, args={})
-      Gibbon.new.send(message, {id: list_id, api_key: MC_API_KEY}.merge(args))
-      #gibbon = Gibbon::Request.new(api_key: MC_API_KEY)
+      #Gibbon.new.send(message, {id: list_id, api_key: MC_API_KEY}.merge(args))
+      gibbon = Gibbon::Request.new(api_key: MC_API_KEY)
     end
 
 end

@@ -159,7 +159,7 @@ DEPENDENCIES
   capistrano3-unicorn
   coffee-rails (~> 3.2.2)
   friendly_id (~> 4.0.1)
-  gibbon (~> 0.4.6)
+  gibbon
   hashie
   httparty
   jquery-rails
