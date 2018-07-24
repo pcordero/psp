@@ -70,6 +70,8 @@ group :development do
   #gem 'capistrano3-puma', github: "seuros/capistrano-puma"
 end
 
+#gem 'mailchimp-api', require: 'mailchimp'
+
 # Legacy Content Managment to be removed
 # gem 'refinerycms'
 # gem 'refinerycms-blog'

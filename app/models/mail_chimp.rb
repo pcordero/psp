@@ -1,7 +1,8 @@
 class MailChimp
 
   def list_id
-    ENV['MC_LIST_ID']
+    #ENV['MC_LIST_ID']
+    MC_LIST_ID
   end
 
   def segments
