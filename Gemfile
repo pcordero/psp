@@ -13,7 +13,7 @@ gem 'test-unit', '~> 3.0'
 
 gem "friendly_id", "~> 4.0.1"
 
-gem "gibbon"
+gem "gibbon", "~> 0.4.6"
 gem "simple_form"
 
 # Gems used only for assets and not required
