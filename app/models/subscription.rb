@@ -4,7 +4,7 @@ class Subscription
   validates_presence_of :email
   validates_format_of :email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
 
-  attr_accessor :email, :name, :address, :city, :state, :zipcode, :state_code, :cycle
+  attr_accessor :email, :name, :address, :city, :state, :zipcode, :state_code,  :cycle, :state_id
 
   def initialize(attributes = {})
     attributes.each do |key, value|
@@ -26,6 +26,7 @@ class Subscription
 
   def save
     if valid?
+      #debugger
       mail_chimp.subscribe_to_segment(email, segment, merge_vars)
     else
       false
@@ -37,8 +38,11 @@ class Subscription
       name: name,
       address: address,
       city: city,
-      state: state,
-      zipcode: zipcode
+      state: state_code,
+      zipcode: zipcode,
+      cycle: cycle,
+      state_code: state_code
+      
     }
   end
 

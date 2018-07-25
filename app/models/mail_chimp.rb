@@ -22,8 +22,30 @@ class MailChimp
   end
 
   def subscribe_to_segment(email, segment, merge_vars)
-    subscribe(email, merge_vars)
-    add_to_segment(email, segment)
+    
+    #{:name=>"Scott Johnson", :address=>nil, :city=>nil, :state=>nil, :zipcode=>nil}
+    # subscribe(email, merge_vars)
+    # merge6 = Prayer list frequency
+    # merge7 / SELECTYUI = state
+    # add_to_segment(email, segment)
+    #debugger
+    first_name = merge_vars[:name].split(" ").first
+    last_name = merge_vars[:name].split(" ").last
+    mailchimp = Gibbon::Request.new(api_key: MC_API_KEY, symbolize_keys: true)
+    if Rails.env.development?
+      mailchimp.lists(list_id).members.create(body: {email_address: email, status: "subscribed", merge_fields: {FNAME: first_name, LNAME: last_name, NAME: merge_vars[:name], RADIOYUI_: merge_vars[:cycle], SELECTYUI: merge_vars[:state_code]}, double_optin: false, update_existing: true, send_welcome: true})
+      add_to_segment(email, segment)      
+    else
+      # error handling to prevent duplicates from crashing
+      begin 
+        mailchimp.lists(list_id).members.create(body: {email_address: email, status: "subscribed", merge_fields: {FNAME: first_name, LNAME: last_name, NAME: merge_vars[:name], RADIOYUI_: merge_vars[:cycle], SELECTYUI: merge_vars[:state_code]}, double_optin: false, update_existing: true, send_welcome: true})
+        add_to_segment(email, segment)
+      rescue Exception => e
+      end
+    end
+
+    #debugger
+    
   end
 
   def subscribe(email, merge_vars)
@@ -41,13 +63,15 @@ class MailChimp
        seg_id: segment.mail_chimp_id,
        batch: [email]
       )
+      #gibbon.lists(list_id).members.create(body: {email_address: "foo@bar.com", status: "subscribed", merge_fields: {FNAME: "First Name", LNAME: "Last Name"}})
+
   end
 
   private
 
     def mc(message, args={})
       #Gibbon.new.send(message, {id: list_id, api_key: MC_API_KEY}.merge(args))
-      gibbon = Gibbon::Request.new(api_key: MC_API_KEY)
+      gibbon = Gibbon::Request.new(api_key: MC_API_KEY, symbolize_keys: true)
     end
 
 end
