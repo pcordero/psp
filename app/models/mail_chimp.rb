@@ -33,7 +33,8 @@ class MailChimp
     last_name = merge_vars[:name].split(" ").last
     mailchimp = Gibbon::Request.new(api_key: MC_API_KEY, symbolize_keys: true)
     if Rails.env.development?
-      mailchimp.lists(list_id).members.create(body: {email_address: email, status: "subscribed", merge_fields: {FNAME: first_name, LNAME: last_name, NAME: merge_vars[:name], RADIOYUI_: merge_vars[:cycle], SELECTYUI: merge_vars[:state_code]}, double_optin: false, update_existing: true, send_welcome: true})
+      mailchimp.lists(list_id).members.create(body: {email_address: email, status: "subscribed", merge_fields: {FNAME: first_name, LNAME: last_name, NAME: merge_vars[:name], RADIOYUI_: merge_vars[:cycle], SELECTYUI: merge_vars[:state_code]}, groupings: [{:name => "Daily-IN-Indiana"}], double_optin: false, update_existing: true, send_welcome: true})
+      debugger
       add_to_segment(email, segment)      
     else
       # error handling to prevent duplicates from crashing
@@ -59,10 +60,18 @@ class MailChimp
   end
 
   def add_to_segment(email, segment)
-    mc('list_static_segment_members_add', 
-       seg_id: segment.mail_chimp_id,
-       batch: [email]
-      )
+    gibbon = Gibbon::Request.new(api_key: MC_API_KEY, symbolize_keys: true)
+    #debugger
+    list_id = 660481
+    #http://codegists.com/code/mailchimp-api-3.0-send-email/
+    emails_added = gb.list_static_segment_members_add( :id => list_id,
+                                                           :seg_id => segment.mail_chimp_id,
+                                                           :batch => [email] )
+                                                           
+    # mc('list_static_segment_members_add',
+    #    seg_id: segment.mail_chimp_id,
+    #    batch: [email]
+    #   )
       #gibbon.lists(list_id).members.create(body: {email_address: "foo@bar.com", status: "subscribed", merge_fields: {FNAME: "First Name", LNAME: "Last Name"}})
 
   end

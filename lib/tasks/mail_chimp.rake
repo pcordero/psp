@@ -11,7 +11,7 @@ namespace :mail_chimp do
   
   # bundle exec rake mail_chimp:test_single_signup --trace
   task :test_single_signup => :environment do
-    params =  {"utf8"=>"✓", "authenticity_token"=>"QEJ4OsilHM09UCREob3ta34HuXUeSYtvhrYbv41f+xA=", "subscription"=>{:name=>"Scott Johnson", :email=>"fuzzygroup@gmail.com", :cycle=>"daily", :state_code=>"ut"}, "commit"=>"Subscribe", :state_id=>"ut"}
+    params =  {"utf8"=>"✓", "authenticity_token"=>"QEJ4OsilHM09UCREob3ta34HuXUeSYtvhrYbv41f+xA=", "subscription"=>{:name=>"Scott Johnson", :email=>"fuzzygroup+test1@gmail.com", :cycle=>"daily", :state_code=>"ut"}, "commit"=>"Subscribe", :state_id=>"ut"}
     
     @subscription = Subscription.new(params["subscription"])
     if @subscription.save
@@ -19,4 +19,10 @@ namespace :mail_chimp do
       raise @subscription.errors.full_messages.inspect
     end
   end
+  
+  task :list_segments => :environment do
+    gibbon = Gibbon::Request.new(api_key: MC_API_KEY, symbolize_keys: true)
+    puts gibbon.lists(660481).segments.retrieve
+  end
+  
 end
