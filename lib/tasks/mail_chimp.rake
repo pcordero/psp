@@ -25,4 +25,38 @@ namespace :mail_chimp do
     puts gibbon.lists(660481).segments.retrieve
   end
   
+  # bundle exec rake mail_chimp:create_new_lists
+  task :create_new_lists => :environment do
+    @states = %w{al ak az ar ca co ct de fl ga hi id il in ia ks ky la me md ma mi mn ms mo mt ne nv nh nj nm ny nc nd oh ok or pa ri sc sd tn tx ut vt va wa wv wi wy}
+    gibbon = Gibbon::Request.new(api_key: MC_API_KEY, symbolize_keys: true)
+    
+    params = {
+        "name" => "mail-list-#{@states.first}",
+        "contact" => {
+            "company" => "",
+            "address1" => "",
+            "address2" => "",
+            "city" => "",
+            "state" => "",
+            "zip" => "",
+            "country" => "",
+            "phone" => ""
+        },
+        "permission_reminder" => "You are receiving this email, because you subscribed to our product.",
+        "campaign_defaults" => {
+            "from_name" => "Matthew Barnes",
+            "from_email" => "matthew@publicservantsprayer.org",
+            "subject" => "Public Servants' Prayer",
+            "language" => "en"
+        },
+        "email_type_option" => true
+    }
+    
+    mail_chimp_list = gibbon.lists.create(body: params)
+    
+    @states.each do |state|
+      
+    end
+  end
+  
 end
