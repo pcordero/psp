@@ -4,6 +4,10 @@ Psp::Application.routes.draw do
   root to: 'states#index'
   #match "/states/:code" => "states#show"
   #match "/states", to: 'states#index'
+  
+  # http://localhost:3000/states/ut/feed.rss
+  
+  match "/states/:id/feed.rss", to: 'states#index'
 
   resources :leaders
 
@@ -12,6 +16,8 @@ Psp::Application.routes.draw do
     resource :calendar
     resources :subscriptions
   end
+  
+  match "/all_states", to: "states#all", as: "all_states"
 
   match "/states/:id/:year/:month/:day/calendars/daily/twitter", to: "states#twitter", as: "daily_twitter_feed"
   match "/states/:id/:year/:month/:day/calendars/daily/facebook", to: "states#facebook", as: "daily_facebook_feed"
