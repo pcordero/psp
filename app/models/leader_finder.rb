@@ -5,7 +5,7 @@ class LeaderFinder
   #base_uri 'api.publicservantsprayer.org'
   #base_uri 'api:8080'
   #base_uri '18.217.8.198:80'
-  base_url 'api.publicservantsprayer1.org'
+  base_uri 'api.publicservantsprayer1.org'
   # http://18.217.8.198:80/v1/states/in/leaders
 
   def self.find(slug)
