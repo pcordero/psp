@@ -41,9 +41,11 @@ class Leader < Hashie::Mash
     return "http://placehold.it/109x148" if self['photo_file'].nil?
     return "http://placehold.it/109x148" if self['photo_path'].nil? 
     
-    l = Logger.new(File.join(Rails.root, "log", "images.log"))
-    l.info("photo_file = #{self['photo_file']}")
-    l.info("photo_path = #{self['photo_path']}")
+    if Rails.env.development?
+      l = Logger.new(File.join(Rails.root, "log", "images.log"))
+      l.info("photo_file = #{self['photo_file']}")
+      l.info("photo_path = #{self['photo_path']}")
+    end
     
     # works: http://18.191.175.149/photos/SL/AK/H/Birch_Chris_583178.jpg
     
@@ -54,13 +56,13 @@ class Leader < Hashie::Mash
     #Rails.logger("p_path = #{p_path}")
     
     p_path = self.photo_path.sub(/Images/,'').sub(/Photos/,'photos').gsub(/\\/,'/')
-    l.info("p_path = #{p_path}")
+    l.info("p_path = #{p_path}") if Rails.env.development?
     parts = self["photo_file"].split("_")
     tmp1 = File.join(Rails.root, "public", p_path, "*_#{parts.last}")
-    l.info("tmp1 = #{tmp1}")
+    l.info("tmp1 = #{tmp1}") if Rails.env.development?
     results = Dir.glob(File.join(Rails.root, "public", p_path, "*#{parts.last}"))
     
-    l.info("p_path BEFORE = #{p_path}")
+    l.info("p_path BEFORE = #{p_path}") if Rails.env.development?
     if p_path =~ /SLE/
       p_path = p_path.sub(/SLE/, 'SL')
     end
@@ -75,7 +77,7 @@ class Leader < Hashie::Mash
     end
     
     
-    l.info("parts = #{parts}")
+    l.info("parts = #{parts}") if Rails.env.development?
     
     # arr = []
     # arr << parts[parts.size - 3]
@@ -83,8 +85,8 @@ class Leader < Hashie::Mash
     # arr << parts[parts.size - 1]
     
     #file_by_number = File.join(Rails.root, "public", arr.join("_"))
-    l.info("file_by_number = #{file_by_number}")
-    l.info("actual_file_by_number = #{actual_file_by_number}")
+    l.info("file_by_number = #{file_by_number}") if Rails.env.development?
+    l.info("actual_file_by_number = #{actual_file_by_number}") if Rails.env.development?
     
     #return self['photo_src'] || "http://placehold.it/109x148"
     #return self['photo_src'] || "placeholder.png"
@@ -94,9 +96,9 @@ class Leader < Hashie::Mash
     if self['photo_file']
       tmp = File.join(Rails.root, "public", p_path, self['photo_file'])
       # <img alt="Biggert_judy_158840" class="head-shot" src="/assets/\photos\FL\H/Biggert_Judy_158840.jpg">
-      l.info("tmp = #{tmp}")
+      l.info("tmp = #{tmp}") if Rails.env.development?
       if File.exists?(tmp)
-        l.info("ps = #{ps}")
+        l.info("ps = #{ps}") if Rails.env.development?
         return ps 
       elsif file_by_number && File.exists?(file_by_number)
         #file_by_number = file_by_number.sub(/)
