@@ -66,7 +66,7 @@ class Leader < Hashie::Mash
     if p_path =~ /SLE/
       p_path = p_path.sub(/SLE/, 'SL')
     end
-    l.info("p_path AFTER = #{p_path}")
+    l.info("p_path AFTER = #{p_path}") if Rails.env.development?
     #results = Dir.glob(Rails.root, "public/photos") ("/Users/sjohnson/fuzzygroup/consulting/new_leaders_original/psp/public/photos/SL/IN/S/*194425.jpg")
     if results && results.size == 1
       file_by_number = results.first
