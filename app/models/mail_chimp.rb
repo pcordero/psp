@@ -64,7 +64,8 @@ class MailChimp
     #debugger
     list_id = 660481
     #http://codegists.com/code/mailchimp-api-3.0-send-email/
-    emails_added = gb.list_static_segment_members_add( :id => list_id,
+    # note below the gibbon was originally gb
+    emails_added = gibbon.list_static_segment_members_add( :id => list_id,
                                                            :seg_id => segment.mail_chimp_id,
                                                            :batch => [email] )
                                                            
