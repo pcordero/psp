@@ -71,6 +71,7 @@ group :development do
 end
 
 gem 'mailchimp-api', require: 'mailchimp'
+gem 'awesome_print'
 
 # Legacy Content Managment to be removed
 # gem 'refinerycms'
