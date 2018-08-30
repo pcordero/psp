@@ -31,9 +31,9 @@ namespace :mail_chimp do
     gibbon = Gibbon::Request.new(api_key: MC_API_KEY, symbolize_keys: true)
     
     params = {
-        "name" => "mail-list-#{@states.first}",
+        "name" => "mail-list-psp-#{@states.first}",
         "contact" => {
-            "company" => "",
+            "company" => "Public Servants Prayer",
             "address1" => "",
             "address2" => "",
             "city" => "",
@@ -49,14 +49,50 @@ namespace :mail_chimp do
             "subject" => "Public Servants' Prayer",
             "language" => "en"
         },
-        "email_type_option" => true
+        "email_type_option" => true,
+        "merge_fields" => {
+          "Email": {name: "EMAIL", type: "text"},
+          "Name": {name: "NAME", type: "text"},
+          "Subscribed": {name: "MMERGE2", type: "text"},
+          "Status": {name: "MMERGE3", type: "text"},
+          "First Name": {name: "FNAME", type: "text"},
+          "Last Name": {name: "LNAME", type: "text"},
+          "Prayer list frequency": {name: "RADIOYUI_", type: "text"},
+          "Choose your state": {name: "SELECTYUI", type: "text"}
+        }
+    }
+    tmp = {
+      "Email": {name: "EMAIL", type: "text"},
+      "Name": {name: "NAME", type: "text"},
+      "Subscribed": {name: "MMERGE2", type: "text"},
+      "Status": {name: "MMERGE3", type: "text"},
+      "First Name": {name: "FNAME", type: "text"},
+      "Last Name": {name: "LNAME", type: "text"},
+      "Prayer list frequency": {name: "RADIOYUI_", type: "text"},
+      "Choose your state": {name: "SELECTYUI", type: "text"}
     }
     
     mail_chimp_list = gibbon.lists.create(body: params)
+    debugger
+    mail_chimp_list.merge_fields.create(tmp)
+    #g.lists(mylistid).merge_fields.create(body: {name: "myvar", type: "text"})
     
     @states.each do |state|
-      
+
     end
+  end
+  
+  # bundle exec rake mail_chimp:create_sub --trace
+  task :create_sub => :environment do
+    params = {"utf8"=>"✓", "authenticity_token"=>"X0TWTkCMiTL90SwsLJmj37PEcB8X2kdEdGU33Hu/03w=", "subscription"=>{"name"=>"Scott Johnson", "email"=>"fuzzygroup+3245@gmail.com", "cycle"=>"weekly", "state_code"=>"wa"}, "commit"=>"Subscribe", "action"=>"create", "controller"=>"subscriptions", "state_id"=>"wa"}
+    params = {"utf8"=>"✓", "authenticity_token"=>"X0TWTkCMiTL90SwsLJmj37PEcB8X2kdEdGU33Hu/03w=", "subscription"=>{"name"=>"Scott Johnson", "email"=>"fuzzygroup+3245@gmail.com", "cycle"=>"weekly", "state_code"=>"wa"}, "commit"=>"Subscribe", "action"=>"create", "controller"=>"subscriptions", "state_id"=>"ny"}
+        @state = UsState.new(params["state_id"])
+    @subscription = Subscription.new(params["subscription"])
+    if @subscription.save
+    else
+      @subscription
+    end
+    debugger
   end
   
 end
