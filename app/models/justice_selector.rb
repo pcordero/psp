@@ -7,7 +7,7 @@ class JusticeSelector
   end
 
   def self.for_day(state, date)
-    Refinery::Justices::Justice.all(order: "position")
+    #Refinery::Justices::Justice.all(order: "position")
   end
 
   def leader_type
