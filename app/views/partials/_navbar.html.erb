@@ -16,10 +16,8 @@
           <% css = "" %>
           <li class="<%= css %>"><%= link_to "Find Your State", "/states" %></li>
 
-          <li class="<%= css %>"><%= link_to "Blog", "http://blog.publicservantsprayer.org/" %></li>
-
           <% css = params[:path] == "about" ? "active" : "" %>
-          <li class="<%= css %>"><%= link_to "About", "http://blog.publicservantsprayer.org/about" %></li>
+          <li class="<%= css %>"><%= link_to "About", "http://blog.publicservantsprayer.org/" %></li>
         </ul>
       </div>
     </div>
