@@ -72,6 +72,7 @@ end
 
 gem 'mailchimp-api', require: 'mailchimp'
 gem 'awesome_print'
+gem 'twurl'
 
 # Legacy Content Managment to be removed
 # gem 'refinerycms'

@@ -92,6 +92,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.2.0)
+    oauth (0.5.4)
     pg (0.21.0)
     polyglot (0.3.5)
     power_assert (1.1.0)
@@ -147,6 +148,8 @@ GEM
     turbo-sprockets-rails3 (0.3.14)
       railties (> 3.2.8, < 4.0.0)
       sprockets (>= 2.2.0)
+    twurl (0.9.3)
+      oauth (~> 0.4)
     tzinfo (0.3.53)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
@@ -180,8 +183,9 @@ DEPENDENCIES
   simple_form
   test-unit (~> 3.0)
   turbo-sprockets-rails3
+  twurl
   uglifier (>= 1.0.3)
   unicorn
 
 BUNDLED WITH
-   1.15.4
+   1.16.0
