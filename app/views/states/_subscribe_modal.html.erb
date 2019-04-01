@@ -1,0 +1,56 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Prayer List Signup</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_for Subscription.new, url: new_subscription_path, method: :post do |f| %>
+          <div class="control-group">
+            <h3>Your Name<span>*</span></h3>
+            <%= f.text_field :first_name, placeholder: 'First Name', class: 'input-small', required: true %>
+            <%= f.text_field :last_name, placeholder: 'Last Name', class: 'input-small', required: true %>
+          </div>
+          <div class="control-group">
+            <h3>Your Email Address<span>*</span></h3>
+            <div class="controls">
+              <%= f.email_field :email, placeholder: 'Email', class: 'input-small', required: true %>
+            </div>
+          </div>
+          <div class="control-group">
+            <h3>Your Name<span>*</span></h3>
+            <div class="description">
+              How often would you like to receive a reminder to prayer for your
+              elected officials?
+            </div>
+            <div class="controls">
+              <label class="radio">
+                <%= f.radio_button :cycle, "daily" %>
+                Daily
+              </label>
+              <label class="radio">
+                <%= f.radio_button :cycle, "weekly" %>
+                Weekly
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <h3>Choose Your State<span>*</span></h3>
+            <div class="description">
+              Select your state so we can send you reminders for your elected officials.
+            </div>
+            <div class="controls">
+              <%= f.collection_select(:state_code, UsState.names, :first, :second, {prompt: 'Select a state'}, {required: true}) %>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <%= f.button "Submit", type: :submit, class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

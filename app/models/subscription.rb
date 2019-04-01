@@ -4,12 +4,16 @@ class Subscription
   validates_presence_of :email
   validates_format_of :email, :with => URI::MailTo::EMAIL_REGEXP
 
-  attr_accessor :email, :name, :address, :city, :state, :zipcode, :state_code,  :cycle, :state_id
+  attr_accessor :email, :name, :address, :city, :state, :zipcode, :state_code, :cycle, :state_id, :first_name, :last_name, :full_name
 
   def initialize(attributes = {})
     attributes.each do |key, value|
       send("#{key}=", value)
     end
+  end
+
+  def full_name
+    first_name ? "#{first_name} #{last_name}" : name
   end
 
   def mail_chimp
@@ -35,7 +39,7 @@ class Subscription
 
   def merge_vars
     {
-      name: name,
+      name: full_name,
       address: address,
       city: city,
       state: state_code,

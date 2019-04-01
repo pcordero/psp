@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     resources :subscriptions
   end
 
+  post '/subscribe', to: "subscriptions#subscribe", as: "new_subscription"
+
   get "/all_states", to: "states#all", as: "all_states"
 
   get "/states/:id/:year/:month/:day/calendars/daily/twitter", to: "states#twitter", as: "daily_twitter_feed"

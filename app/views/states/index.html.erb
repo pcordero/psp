@@ -13,16 +13,16 @@ You are invited to join us as we pray for three elected officials daily.  Use th
 
   <%= render :partial => 'map' %>
 
-  <%= render :partial => 'region_button', 
+  <%= render :partial => 'region_button',
     locals: {region: 'northeast', position: 'top:0;right:5%'} %>
 
-  <%= render :partial => 'region_button', 
+  <%= render :partial => 'region_button',
     locals: {region: 'midwest', position: 'top:0;right:40%'} %>
 
-  <%= render :partial => 'region_button', 
+  <%= render :partial => 'region_button',
     locals: {region: 'south', position: 'bottom:50%;right:5%'} %>
 
-  <%= render :partial => 'region_button', 
+  <%= render :partial => 'region_button',
     locals: {region: 'west', position: 'top:20%;left:0'} %>
 
 </div>
@@ -76,3 +76,23 @@ You are invited to join us as we pray for three elected officials daily.  Use th
   </div>
 </div>
 <% end %>
+
+
+<div class="lead directions">
+  <div>
+    <p>
+      Public Servants Prayer will assist you in praying for your leaders by sending
+      a daily or weekly reminder by email.&nbsp; You will receive a picture and
+      specific information about three legislators from your state.&nbsp; This service
+      is free of charge.
+    </p>
+    <p class="highlight">
+      Public Servants' Prayer supports leaders through prayer and pastoral care.
+    </p>
+    <button type="button" class="btn btn-modal" data-toggle="modal" data-target="#exampleModal">
+      Subscribe to pray for leaders
+    </button>
+  </div>
+</div>
+
+<%= render 'subscribe_modal' %>

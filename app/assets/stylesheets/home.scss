@@ -1,0 +1,42 @@
+body.states {
+  .directions {
+    margin-top: 4rem;
+    text-align: center;
+
+    .highlight {
+      font-size: 1.275rem;
+      font-weight: 500;
+      margin-top: 3rem;
+    }
+  }
+
+  .btn-modal {
+    background-color: #000 !important;
+    background-image: none;
+    color: #fff !important;
+    padding: 10px;
+    text-transform: uppercase;
+    text-shadow: none;
+
+    &:hover {
+      opacity: .8;
+    }
+  }
+
+  .modal {
+    .modal-header .close {
+      margin-top: -30px;
+    }
+
+    .modal-footer {
+      text-align: center;
+    }
+
+    input {
+      padding: 10px;
+    }
+  }
+
+
+
+}

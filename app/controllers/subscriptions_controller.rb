@@ -10,8 +10,21 @@ class SubscriptionsController < ApplicationController
     )
   end
 
+  def subscribe
+    @subscription = Subscription.new(params[:subscription])
+    begin
+      if @subscription.save
+        flash[:success] = "You have successfully subscribed to the #{@subscription.segment.public_name}"
+      end
+    rescue Exception => e
+      flash[:success] = "Your subscription could not be created. This is generally because you have already subscribed."
+    end
+    redirect_to root_path
+  end
+
   def create
     #debugger
+    params['subscription']['full_name'] = params['subscription'].delete('name')
     @state = UsState.new(params[:state_id])
     @subscription = Subscription.new(params[:subscription])
     begin

@@ -3,12 +3,12 @@ require 'digest/md5'
 class MailChimp
 
   def list_id
-    #ENV['MC_LIST_ID']
-    MC_LIST_ID
+    ENV['MAILCHIMP_LIST_ID']
+    #MC_LIST_ID
   end
 
   def segments
-    mc('list_static_segments') 
+    mc('list_static_segments')
   end
 
   def members
@@ -26,13 +26,13 @@ class MailChimp
   def subscribe_to_segment(email, segment, merge_vars)
     first_name = merge_vars[:name].split(" ").first
     last_name = merge_vars[:name].split(" ").last
-    mailchimp = Gibbon::Request.new(api_key: MC_API_KEY, symbolize_keys: true)
+    mailchimp = Gibbon::Request.new(api_key: ENV['MAILCHIMP_API_KEY'], symbolize_keys: true)
     email_md5 = Digest::MD5.hexdigest(email)
     mailchimp.lists(list_id)
       .members(email_md5)
       .upsert(body: {
-      email_address: email, 
-      status: "subscribed", 
+      email_address: email,
+      status: "subscribed",
       merge_fields: {
         FNAME: first_name,
         LNAME: last_name,
@@ -60,7 +60,7 @@ class MailChimp
   end
 
   def add_to_segment(email, segment)
-    gibbon = Gibbon::Request.new(api_key: MC_API_KEY, symbolize_keys: true)
+    gibbon = Gibbon::Request.new(api_key: ENV['MAILCHIMP_API_KEY'], symbolize_keys: true)
     #debugger
     list_id = 660481
     #http://codegists.com/code/mailchimp-api-3.0-send-email/
@@ -80,7 +80,7 @@ class MailChimp
   private
 
   def mc(message, args={})
-    #Gibbon.new.send(message, {id: list_id, api_key: MC_API_KEY}.merge(args))
-    gibbon = Gibbon::Request.new(api_key: MC_API_KEY, symbolize_keys: true)
+    #Gibbon.new.send(message, {id: list_id, api_key: ENV['MAILCHIMP_API_KEY']}.merge(args))
+    gibbon = Gibbon::Request.new(api_key: ENV['MAILCHIMP_API_KEY'], symbolize_keys: true)
   end
 end
