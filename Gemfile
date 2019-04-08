@@ -1,67 +1,41 @@
 source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'rails', '3.2.22'
-gem 'bootstrap-sass', "~> 2.0.0"
+ruby '2.6.3'
 
-gem 'pg'
-gem 'httparty'
+gem 'awesome_print'
+gem 'bootsnap', '>= 1.1.0', require: false
+gem 'bootstrap-sass', '~> 2.3.2.2'
+gem 'friendly_id', '~> 5.2.4'
+gem 'gibbon'
 gem 'hashie'
-
-# Workaround for no longer supported rails issue: 
-# https://github.com/rails/rails/issues/9256
-gem 'test-unit', '~> 3.0'
-
-gem "friendly_id", "~> 4.0.1"
-
-gem "gibbon"#, "~> 0.4.6"
-gem "simple_form"
-
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass', '~> 3.1.10'
-  gem 'sass-rails',   '~> 3.2.6'
-  gem 'coffee-rails', '~> 3.2.2'
-  gem 'uglifier', '>= 1.0.3'
-  gem 'turbo-sprockets-rails3'
-end
-
+gem 'httparty'
+gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
+gem 'mailchimp-api', require: 'mailchimp'
+gem 'pg', '>= 0.18', '< 2.0'
+gem 'puma', '~> 3.11'
+gem 'rails', '~> 5.2.3'
+gem 'sass-rails', '~> 5.0'
+gem 'simple_form'
+gem 'turbolinks', '~> 5'
+gem 'twitter'
+gem 'twurl'
+gem 'uglifier', '>= 1.3.0'
 
-# TODO: Working tests will return!
-group :test, :development do
-  gem 'byebug'
-  #gem 'rspec-rails', '2.8.1'
-  #gem 'capybara', '1.1.2'
-  #gem 'guard-rspec'
-  #gem 'guard-spork'
-  #gem 'factory_girl_rails', "~> 3.0"
-  #gem 'delorean'
-  #gem 'vcr'
-  #gem 'fakeweb'
-  #gem 'spring'
-  #gem 'spring-commands-rspec'
+
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
-# group :development do
-#   gem 'capistrano'
-#   gem 'capistrano-rails'
-#   gem 'capistrano-bundler'
-#   gem 'capistrano-systemd-multiservice'
-#   gem 'aws-sdk'
-#   gem 'capistrano-measure'
-#   gem 'capistrano-asg'
-#   #gem 'capistrano-puma'
-#   gem 'capistrano3-puma', github: "seuros/capistrano-puma"
-# end
-
-
-# Use unicorn as the app server
-gem 'unicorn'
-#gem 'puma', '~> 3.7'
-
-# Deploy with Capistrano
 group :development do
+  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  gem 'web-console', '>= 3.3.0'
+  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+
   gem 'capistrano'
   gem 'capistrano-rbenv'
   gem 'capistrano-rails'
@@ -70,12 +44,13 @@ group :development do
   #gem 'capistrano3-puma', github: "seuros/capistrano-puma"
 end
 
-gem 'mailchimp-api', require: 'mailchimp'
-gem 'awesome_print'
-gem 'twurl'
+group :test do
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara', '>= 2.15'
+  gem 'selenium-webdriver'
+  gem 'webdrivers', '> 2.3'
+end
 
-# Legacy Content Managment to be removed
-# gem 'refinerycms'
-# gem 'refinerycms-blog'
-# gem 'refinerycms-justices', :path => 'vendor/extensions'
-# gem 'refinerycms-executives', :path => 'vendor/extensions'
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

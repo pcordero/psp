@@ -20,22 +20,22 @@ class LeaderFinder
   end
 
   def self.us_senate(state_code)
-    get_leaders "/v1/states/#{state_code}/leaders/us_senate"  
+    get_leaders "/v1/states/#{state_code}/leaders/us_senate"
   end
 
   # bug
   def self.us_house(state_code)
-    get_leaders "/v1/states/#{state_code}/leaders/us_house"  
+    get_leaders "/v1/states/#{state_code}/leaders/us_house"
   end
 
   # bug
   def self.state_senate(state_code)
-    get_leaders "/v1/states/#{state_code}/leaders/state_senate"  
+    get_leaders "/v1/states/#{state_code}/leaders/state_senate"
   end
 
   # bug
   def self.state_house(state_code)
-    get_leaders "/v1/states/#{state_code}/leaders/state_house"  
+    get_leaders "/v1/states/#{state_code}/leaders/state_house"
   end
 
   # bug
@@ -47,6 +47,7 @@ class LeaderFinder
 
     def self.get_leaders(endpoint)
       results = cached_get(endpoint)
+      
       begin
         leaders(results)
       rescue

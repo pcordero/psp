@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :get_ip
+  before_action :get_ip
   helper_method :usaprays?
 
   def get_ip
